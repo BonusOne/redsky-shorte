@@ -9,6 +9,7 @@
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Psr\Log\LoggerInterface;
@@ -27,7 +28,11 @@ class getCurrencyCommand extends Command
     {
         $this
             ->setName('redsky:get-currency')
-            ->setDescription('Build buffered statistics to save in database.');
+            ->setDescription('Get Currency data and return ANG, Median and percentile.')
+            ->addArgument('currencyFrom', InputArgument::REQUIRED, 'Add first currency (PLN, EUR).')
+            ->addArgument('currencyTo', InputArgument::REQUIRED, 'Add last currency (PLN, EUR).')
+            ->addArgument('dateFrom', InputArgument::REQUIRED, 'Add date from (RRRR-MM-DD).')
+            ->addArgument('dateTo', InputArgument::REQUIRED, 'Add date to (RRRR-MM-DD).');
     }
 
     /**
@@ -38,9 +43,19 @@ class getCurrencyCommand extends Command
      */
     public function execute(InputInterface $input, OutputInterface $output, $ignoreInterval = false): int
     {
+        $currencyFrom = (string)$input->getArgument('currencyFrom');
+        $currencyFrom = strtoupper(substr($currencyFrom, 0, 3));
+        $currencyTo = (string)$input->getArgument('currencyTo');
+        $currencyTo = strtoupper(substr($currencyTo, 0, 3));
+        $dateFrom = date("Y-m-d", strtotime($input->getArgument('dateFrom')));
+        $dateTo = date("Y-m-d", strtotime($input->getArgument('dateTo')));
 
         $output->writeln("Building (" . date("Y-m-d H:i:s") . ")");
+        $output->writeln("currencyFrom " . $currencyFrom);
+        $output->writeln("currencyTo " . $currencyTo);
+        $output->writeln("dateFrom " . $dateFrom);
+        $output->writeln("dateTo " . $dateTo);
 
-        return 1;
+        return Command::SUCCESS;
     }
 }

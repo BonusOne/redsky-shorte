@@ -30,3 +30,22 @@ vHost - Apache
 </VirtualHost>
 ```
 
+## Using
+
+This is console application, usein bash/terminal:
+```
+php bin/console redsky:get-currency currencyFrom currencyTo dateFrom dateTo
+```
+| Name | Type | Example |
+|---|---|---|
+| currencyFrom | string | USD |
+| currencyTo | string | EUR |
+| dateFrom | string | 2021-01-01 |
+| dateTo | string | 2021-06-01 |
+
+
+Example:
+```
+php bin/console redsky:get-currency USD EUR 2021-01-01 2021-06-01
+```
+
