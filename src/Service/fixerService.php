@@ -15,7 +15,7 @@ class fixerService
 {
     private LoggerInterface $logger;
     private Swift_Mailer $mailer;
-    private string $baseUrl = 'https://data.fixer.io/api/';
+    private string $baseUrl = 'http://data.fixer.io/api/';
     protected string $accessKey = '36227ff60860b51bddc919a289e5c693';
     private string $encoding = "UTF-8";
 
@@ -80,24 +80,26 @@ class fixerService
                         ->setFrom('no-reply@RedSky.com')
                         ->setTo('pawel.liwocha@gmail.com')
                         ->setBody(
-                            $method . ' - ' . $callURL . "\n" . var_export($data, true) . "\n" . var_export($err,true) ."\n".var_export($curlInfo, true),
+                            $method.' - '.$callURL."\n".var_export($data, true)."\n".var_export($err,true)."\n".var_export($curlInfo, true),
                             'text/html');
                     $this->mailer->send($message);
                 }catch (\Exception $e){
                     $this->logger->error('[ERROR] Add row - Activity: '. $e->getMessage());
                 }
             }
-            $this->logger->error($method . ' ' . $callURL . "\n" . var_export($data, true) . "\n" . var_export($err, true) ."\n".var_export($curlInfo, true));
+            $this->logger->error($method.' '.$callURL."\n".var_export($data, true)."\n".var_export($err, true)."\n".var_export($curlInfo, true));
             throw new \Exception(var_export($err, true));
         }
 
         $this->logger->info(
-            $method . ' ' . $callURL .
-            "\nPOST DATA:\n" .
-            var_export($data, true) .
-            "\nRESPONSE:\n" .
+            $method.' '.$callURL.
+            "\r\nPOST DATA:\r\n".
+            var_export($data, true).
+            "\r\nGET DATA:\r\n".
+            var_export($parameters, true).
+            "\r\nRESPONSE:\r\n".
             var_export(json_decode($response, true), true).
-            "\nDURATION: $duration\n");
+            "\r\nDURATION: $duration\r\nn");
 
         return json_decode($response, true);
     }

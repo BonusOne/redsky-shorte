@@ -32,17 +32,17 @@ vHost - Apache
 
 ## Using
 
-This is console application, usein bash/terminal:
+This is console application, use in bash/terminal:
 ```
 php bin/console redsky:get-currency currencyFrom currencyTo dateFrom dateTo
 ```
 | Name | Type | Example |
 |---|---|---|
-| currencyFrom | string | USD |
-| currencyTo | string | EUR |
+| currencyFrom | string | EUR |
+| currencyTo | string | USD |
 | dateFrom | string | 2021-01-01 |
 | dateTo | string | 2021-06-01 |
-
+Free plan has only EUR in currencyFrom currency
 
 Example:
 ```
