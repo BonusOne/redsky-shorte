@@ -8,7 +8,7 @@
 
 ## How to run / Installation
 1. Clone from Repo
-2. ```.env``` change Swift mailer
+2. Create ```.env``` from `.env-test.env` change Mailer
 3. ```composer install```
 4. Set your email in ```config/packages/dev/monolog.yaml``` in swift:to_email
 
@@ -42,6 +42,7 @@ php bin/console redsky:get-currency currencyFrom currencyTo dateFrom dateTo
 | currencyTo | string | USD |
 | dateFrom | string | 2021-01-01 |
 | dateTo | string | 2021-06-01 |
+
 Free plan has only EUR in currencyFrom currency
 
 Example:
