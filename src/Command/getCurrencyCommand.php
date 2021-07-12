@@ -61,11 +61,6 @@ class getCurrencyCommand extends Command
         $dateTo = date("Y-m-d", strtotime($input->getArgument('dateTo')));
 
         if($currencyFrom == 'EUR') {
-            $output->writeln("Building (" . date("Y-m-d H:i:s") . ")");
-            $output->writeln("currencyFrom " . $currencyFrom);
-            $output->writeln("currencyTo " . $currencyTo);
-            $output->writeln("dateFrom " . $dateFrom);
-            $output->writeln("dateTo " . $dateTo);
 
             $startLoop = new DateTime($dateFrom);
             $endLoop = new DateTime($dateTo);
@@ -78,11 +73,9 @@ class getCurrencyCommand extends Command
             $dataFixer = array();
 
             foreach ($period as $dt) {
-                $output->writeln("DatePeriod " . $dt->format("Y-m-d"));
                 $result = $this->fixer->call($dt->format("Y-m-d"), 'GET', $parameters);
                 if (array_key_exists($currencyTo, $result['rates'])) {
                     $dataFixer[] = $result['rates'][$currencyTo];
-                    $output->writeln($result['rates'][$currencyTo]);
                 } else {
                     $output->writeln("Error, Fixer don't return value for currency: " . $currencyTo);
                     return Command::FAILURE;
