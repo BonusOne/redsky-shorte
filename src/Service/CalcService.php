@@ -10,7 +10,7 @@ namespace App\Service;
 
 use Psr\Log\LoggerInterface;
 
-class CalcService
+class calcService
 {
     private LoggerInterface $logger;
 
