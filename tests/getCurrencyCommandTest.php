@@ -7,7 +7,6 @@ use App\Service\calcService;
 use App\Service\fixerService;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Tester\CommandTester;
 
 class getCurrencyCommandTest extends KernelTestCase
@@ -19,7 +18,6 @@ class getCurrencyCommandTest extends KernelTestCase
             ->getMock();
 
         $calc = $this->getMockBuilder(calcService::class)
-            ->disableOriginalConstructor()
             ->getMock();
 
         $kernel = static::createKernel();
