@@ -17,17 +17,14 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Psr\Log\LoggerInterface;
 
 class getCurrencyCommand extends Command
 {
-    private LoggerInterface $logger;
     private fixerService $fixer;
     private calcService $calc;
 
-    public function __construct(LoggerInterface $logger, fixerService $fixer, calcService $calc)
+    public function __construct(fixerService $fixer, calcService $calc)
     {
-        $this->logger = $logger;
         $this->fixer = $fixer;
         $this->calc = $calc;
         parent::__construct();

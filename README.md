@@ -8,7 +8,7 @@
 
 ## How to run / Installation
 1. Clone from Repo
-2. Create ```.env``` from `.env-test.env` change Mailer
+2. Create ```.env``` from `.env.test` change Mailer
 3. ```composer install```
 4. Set your email in ```config/packages/dev/monolog.yaml``` in swift:to_email
 
